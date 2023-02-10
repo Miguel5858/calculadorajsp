@@ -1,0 +1,70 @@
+<%-- 
+    Document   : index
+    Created on : 10 feb. 2023, 13:51:32
+    Author     :  MIGUEL INTRIAGO
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    
+float resultado = 0;
+float nro1 = 0;
+float nro2 = 0; 
+
+if (request.getMethod () == "POST") {
+    nro1 = Float.parseFloat(request.getParameter("nro1"));
+    nro2 = Float.parseFloat(request.getParameter("nro2"));
+    if (request.getParameter("sumar") != null) {
+        resultado = nro1 + nro2;
+    } else if (request.getParameter("restar") != null) {
+        resultado = nro1 - nro2;
+    } else if (request.getParameter("multiplicar") != null) {
+        resultado = nro1 * nro2;
+    } else {
+        resultado = nro1 / nro2;
+    }
+}    
+    
+%>
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" 
+             integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+        <title>Calculadora Jsp</title>
+    </head>
+    <body>
+        <br/><br/><br/><br/>
+        <div class="container text-center col-md-4">
+        <h3 class="text-success">CALCULADORA JSP</h3>
+         Resultado:
+         <input type="number" style="font-size:20px; font-weight:bold;" class="form-control text-center text-success" value="<%=resultado%>" readonly /><br/>
+        <form method="post">
+            <h6 class="text-muted">Primer Número:<h6>
+            <input type="number" class="form-control text-center" value="<%= nro1 %>" required name="nro1" placeholder="Ingresa el primer número"/><br/>
+            <h6 class="text-muted">Segundo Número:<h6>
+            <input type="number" class="form-control text-center" value="<%= nro2 %>" required name="nro2" placeholder="Ingresa el segundo número"/><br/>
+            
+            <div class="form-group">
+             <input type="submit" class="btn btn-success" value="+" name="sumar"/>
+             <input type="submit" class="btn btn-danger" value="-" name="restar"/>
+             <input type="submit" class="btn btn-primary" value="x" name="multiplicar"/>
+             <input type="submit" class="btn btn-warning" value="/" name="dividir"/>
+             </div>
+           
+        </form>
+        </div>
+            
+            <footer class="text-center"><p class="text-muted">Miguel Intriago 2023</p></footer>
+        <!-- Optional JavaScript -->
+    <!-- Popper.js first, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    </body>
+</html>
